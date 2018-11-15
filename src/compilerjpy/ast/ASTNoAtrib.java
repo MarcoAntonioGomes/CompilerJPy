@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilerjpy;
+package compilerjpy.ast;
 
 /**
  *
  * @author marco
  */
-public class no_atrib extends No{
-    private No next;
+public class ASTNoAtrib extends ASTNo{
+    private ASTNo next;
     private String name;
-    private No expression;
+    private ASTNo expression;
 
-    public no_atrib(int id, int line) {
-        super(id, line);
-    }
-
-    public No getNext() {
+    public ASTNo getNext() {
         return next;
     }
 
-    public void setNext(No next) {
+    public void setNext(ASTNo next) {
         this.next = next;
     }
 
@@ -34,12 +30,16 @@ public class no_atrib extends No{
         this.name = name;
     }
 
-    public No getExpression() {
+    public ASTNo getExpression() {
         return expression;
     }
 
-    public void setExpression(No expression) {
+    public void setExpression(ASTNo expression) {
         this.expression = expression;
+    }
+    
+    public ASTNoAtrib(int line) {
+        super(line);
     }
     
 }

@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilerjpy;
+package compilerjpy.ast;
 
 /**
  *
  * @author marco
  */
-public class no_comand extends No{
-   private No next;
+public class ASTNoComand extends ASTNo{
+    private ASTNo next;
 
-    public no_comand(int id, int line) {
-        super(id, line);
-    }
-
-    public No getNext() {
+    public ASTNo getNext() {
         return next;
     }
 
-    public void setNext(No next) {
+    public void setNext(ASTNo next) {
         this.next = next;
     }
-   
+    
+    public ASTNoComand(int line) {
+        super(line);
+    }
+    
 }

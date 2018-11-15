@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilerjpy;
+package compilerjpy.ast;
+
 
 /**
  *
  * @author marco
  */
-public class _no_expr extends No {
+public class ASTNoExpr extends ASTNo {
         private char operator;
-	private No left;
-	private No right;
-
-    public _no_expr(int id, int line) {
-        super(id, line);
-    }
+	private ASTNo left;
+	private ASTNo right;
 
     public char getOperator() {
         return operator;
@@ -26,23 +23,25 @@ public class _no_expr extends No {
         this.operator = operator;
     }
 
-
-
-    public No getLeft() {
+    public ASTNo getLeft() {
         return left;
     }
 
-    public void setLeft(No left) {
+    public void setLeft(ASTNo left) {
         this.left = left;
     }
 
-    public No getRight() {
+    public ASTNo getRight() {
         return right;
     }
 
-    public void setRight(No right) {
+    public void setRight(ASTNo right) {
         this.right = right;
     }
         
-        
+    public ASTNoExpr(int line, int column) {
+        super(line, column);
+    }
+    
+    
 }

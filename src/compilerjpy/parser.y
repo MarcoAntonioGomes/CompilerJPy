@@ -1,11 +1,5 @@
 %{
-import _no_const;
-import _no_expr;
-import _no_id;
-import _no_print_expr;
-import _no_comand;
-import _no_atrib;
-import No;
+import compilerjpy.ast.*;
 
 public void yyerror(String msg);   // Funçao de erro
 
@@ -15,15 +9,9 @@ No_Numbers nosIds;
 %}
 
 
-%union{
-	double valor;
-	String nome;
-	No no;
-}
 
-%token <nome> ID
-%token <valor> NUM
-%type <no> lst_comandos comando expr
+
+%token   ID INT SUM SUBT DIV MULT ASSIGN ERROR CIN COUT IF FOR FLOAT LEFT_PARAMETER RIGHT_PARAMETER LEFT_BRACKETS RIGHT_BRACKETS ELSE WHILE CHAR SEMICOLON GREATER LESS NEQ EQU NOT
 %nonassoc PRE_MAIS PRE_MENOS
 
 %left '<' '>'
@@ -43,69 +31,69 @@ lst_comandos :
 ;
 comando :
 	expr {
-                $$ = No no = new _no_print_expr(nosIds.NO_ID_PRINT_EXPR.ordinal(),yylineno+1);
-		(_no_print_expr)$$.setExpression($1);
-                (_no_print_expr)$$.setNext(null);
+                $$ = new ASTNoPrintExpr(yylineno+1);
+		((ASTNoPrintExpr)$$).setExpression($1);
+                
 	}
 |	ID '=' expr {
-                $$ = No no = new _no_atrib(nosIds.NO_ID_ATRIB.ordinal(),yylineno+1);
-                (_no_atrib)$$.setName($1);
-                (_no_atrib)$$.setExpression($3);
-		(_no_atrib)$$.setNext(null);
+                $$ = new ASTNoAtrib(yylineno+1);
+                ((ASTNoAtrib)$$).setName($1);
+                ((ASTNoAtrib)$$).setExpression($3);
+		
 	}
 ;
 
 expr :
 	expr '<' expr {
-                $$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('<');
+                $$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('<');
 	}
 |	expr '>' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('>');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('>');
 	}
 |	expr '-' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('-');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('-');
 	}
 |	expr '*' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('*');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('*');
 	}
 |	expr '/' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('/');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('/');
 	}
 |	expr '+' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('+');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('+');
 	}
 |	expr '%' expr {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-		(_no_expr)$$.setLeft($1);
-		(_no_expr)$$.setRight($3);
-		(_no_expr)$$.setOperator('%');
+		$$  = new ASTNoExpr(yylineno+1);
+		((ASTNoExpr)$$).setLeft($1);
+		((ASTNoExprr)$$).setRight($3);
+		((ASTNoExpr)$$).setOperator('%');
 	}
 |	ID {
-		$$ = No no = new _no_id(nosIds.NO_ID_ID.ordinal(),yylineno+1);
-                 (_no_id)$$.setName($1);
+		$$  = new ASTNoId(yylineno+1);
+                 ((ASTNoId)$$).setName($1);
 		
 	}
 |	NUM {
-		$$ = No no = new _no_const(nosIds.NO_ID_CONST.ordinal(),yylineno+1);
-		(_no_const)$$.setValue($1);
+		$$  = new ASTNoConst(yylineno+1);
+		((ASTNoConst)$$).setValue($1);
 	}
 |	'(' expr ')' {
 		$$ = $2;
@@ -114,10 +102,9 @@ expr :
 		$$ = $2;
 	}
 |	'-' expr %prec PRE_MENOS {
-		$$ = No no = new _no_expr(nosIds.NO_ID_EXPR.ordinal(),yylineno+1);
-                (_no_expr)$$.setLeft($2);
-		(_no_expr)$$.setRight(null);
-		(_no_expr)$$.setOperator('-');
+		$$  = ASTNoExpr(yylineno+1);
+                ((ASTNoExpr)$$).setLeft($2);
+		((ASTNoExpr)$$).setOperator('-');
 		
 	}
 ;

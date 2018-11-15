@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilerjpy;
+package compilerjpy.ast;
 
 /**
  *
  * @author marco
  */
-public class _no_const extends No {
-	private double valor;
-
-    public _no_const(int id, int line) {
-        super(id, line);
-    }
+public class ASTNoConst {
+    private double valor;
 
     public double getValor() {
         return valor;
@@ -23,5 +19,5 @@ public class _no_const extends No {
     public void setValor(double valor) {
         this.valor = valor;
     }
-        
+    
 }

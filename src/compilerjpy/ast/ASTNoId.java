@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilerjpy;
+package compilerjpy.ast;
 
 /**
  *
  * @author marco
  */
-public class _no_id extends No {
+public class ASTNoId extends ASTNo{
     private String name;
-
-    public _no_id(int id, int line) {
-        super(id, line);
-    }
 
     public String getName() {
         return name;
@@ -23,6 +19,9 @@ public class _no_id extends No {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    public ASTNoId(int line, int column) {
+        super(line, column);
+    }
     
 }
