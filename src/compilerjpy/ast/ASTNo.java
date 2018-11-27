@@ -9,7 +9,7 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNo {
+public abstract class  ASTNo {
      private int line;
      private int column;
 

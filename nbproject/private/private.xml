@@ -4,8 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Lexer.flex</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoComand.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Token.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Lexer.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/CompilerJPy.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/No_Numbers.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/memberSymbols.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoPrintExpr.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/parser.y</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Scanner.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoConst.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoAtrib.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Testes.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoId.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoExpr.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNo.java</file>
         </group>
     </open-files>
 </project-private>

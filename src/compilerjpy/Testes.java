@@ -15,9 +15,9 @@ public class Testes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       No_Numbers nosIds = null;
-       
-        System.out.println(nosIds.NO_ID_PRINT_EXPR.ordinal());
+      String palavra = "\"nome_\""; 
+      if (!palavra.isEmpty()) palavra = palavra.substring (1, palavra.length() - 1);
+        System.out.println(palavra);
     }
     
 }

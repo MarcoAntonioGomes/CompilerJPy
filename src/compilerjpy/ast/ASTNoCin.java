@@ -9,20 +9,20 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public abstract class ASTNoComand extends ASTNo{
-    private ASTNoComand next;
+public class ASTNoCin extends ASTNoComand {
+    private ASTNoExpr expr;
 
-    public ASTNoComand getNext() {
-        return next;
+    public ASTNoExpr getExpr() {
+        return expr;
     }
 
-    public void setNext(ASTNoComand next) {
-        this.next = next;
+    public void setExpr(ASTNoExpr expr) {
+        this.expr = expr;
     }
 
-   
+  
     
-    public ASTNoComand(int line) {
+    public ASTNoCin(int line) {
         super(line);
     }
     

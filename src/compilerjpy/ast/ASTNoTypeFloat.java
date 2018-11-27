@@ -9,20 +9,9 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public abstract class ASTNoComand extends ASTNo{
-    private ASTNoComand next;
-
-    public ASTNoComand getNext() {
-        return next;
-    }
-
-    public void setNext(ASTNoComand next) {
-        this.next = next;
-    }
-
-   
+public class ASTNoTypeFloat extends ASTNoType {
     
-    public ASTNoComand(int line) {
+    public ASTNoTypeFloat(int line) {
         super(line);
     }
     

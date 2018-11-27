@@ -1,15 +1,20 @@
 package compilerjpy;
 import static compilerjpy.Token.*;
+import java.io.*;
 
 %%
 %class Lexer
 %type Token
+%public
+%byaccj
+
+%{
+
+%}
  
 letter = [a-zA-Z_]
 digit = [0-9]
-string = \"{letter}+\"
-int = {digit}+
-variavel = {letter}+
+
 
 
 white=[ \t\r\n]
@@ -24,27 +29,18 @@ public String lexeme;
 "int" {return INT;}
 "float" {return FLOAT;}
 "cout" {return COUT;}
-"cin" {return CIN;}
-"(" {return LEFT_PARAMETER;}
-")" {return RIGHT_PARAMETER;}    
-"[" {return LEFT_BRACKETS;}
-"]" {return RIGHT_BRACKETS;}    
+"cin" {return CIN;} 
 "else" { return  ELSE; }
 "while" { return  WHILE; }
 "char" { return  CHAR;}
-";"  { return  SEMICOLON; }
-">"  { return GREATER; }
-"<"  { return LESS; }
 "!=" { return NEQ; }
 "==" { return EQU; }
-"!" { return NOT; }
-"=" {return ASSIGN;}
-"+" {return SUM;}
-"*" {return MULT;} 
-"-" {return SUBT;}
-"/" {return DIV;}
+"<<" { return OUT;}
+">>" { return INP;}
+\"~["\n]*\" {((Parser)this).yylval = yytext().substring(1, yytext().length() - 1); return Parser.STRING; }
 
-. { return yytext().getChar(0); }
-{letter}({letter}|{digit})* {lexeme=yytext(); return ID;}
- ("(-"{digit }+")")|{digit }+ {lexeme=yytext(); return INT;}
+. { return (int) yytext().charAt(0); } 
+{letter}({letter}|{digit})* {((Parser)this).yylval = yytext(); return Parser.ID;}
+ ("(-"{digit }+")")|{digit }+ { ((Parser)this).yylval = new Integer(yytext()); return Parser.NUM; }
+
 . {return ERROR;}
