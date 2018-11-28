@@ -9,17 +9,19 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoCoutExpr extends ASTNoComand{
-    private String string;
+public class ASTNoCout extends ASTNoComand{
+    private ASTNoLstCout lstCout;
 
-    public String getString() {
-        return string;
+    public ASTNoLstCout getLstCout() {
+        return lstCout;
     }
 
-    public void setString(String string) {
-        this.string = string;
+    public void setLstCout(ASTNoLstCout lstCout) {
+        this.lstCout = lstCout;
     }
-    public ASTNoCoutExpr(int line) {
+
+   
+    public ASTNoCout(int line) {
         super(line);
     }
     

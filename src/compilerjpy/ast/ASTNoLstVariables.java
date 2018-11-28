@@ -9,9 +9,10 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoVet extends ASTNo{
+public class ASTNoLstVariables extends ASTNo{
     private ASTNoId id;
     private int vetTamValue;
+    private ASTNoLstVariables lstVariables;
 
     public ASTNoId getId() {
         return id;
@@ -28,8 +29,17 @@ public class ASTNoVet extends ASTNo{
     public void setVetTamValue(int vetTamValue) {
         this.vetTamValue = vetTamValue;
     }
+
+    public ASTNoLstVariables getLstVariables() {
+        return lstVariables;
+    }
+
+    public void setLstVariables(ASTNoLstVariables lstVariables) {
+        this.lstVariables = lstVariables;
+    }
     
-    public ASTNoVet(int line) {
+    
+    public ASTNoLstVariables(int line) {
         super(line);
     }
     

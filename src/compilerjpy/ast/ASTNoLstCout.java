@@ -9,9 +9,18 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoCoutWithoutExpr extends ASTNoComand {
+public class ASTNoLstCout extends ASTNo {
     private String string;
     private ASTNoExpr expr;
+    private ASTNoLstCout lstCout;
+
+    public String getString() {
+        return string;
+    }
+
+    public void setString(String string) {
+        this.string = string;
+    }
 
     public ASTNoExpr getExpr() {
         return expr;
@@ -20,16 +29,16 @@ public class ASTNoCoutWithoutExpr extends ASTNoComand {
     public void setExpr(ASTNoExpr expr) {
         this.expr = expr;
     }
-    
-    public String getString() {
-        return string;
+
+    public ASTNoLstCout getLstCout() {
+        return lstCout;
     }
 
-    public void setString(String string) {
-        this.string = string;
+    public void setLstCout(ASTNoLstCout lstCout) {
+        this.lstCout = lstCout;
     }
     
-    public ASTNoCoutWithoutExpr(int line) {
+    public ASTNoLstCout(int line) {
         super(line);
     }
     

@@ -44,22 +44,20 @@ comando :
 		
 	}
 
-|      decl {
+|      type lst_variaveis ';'{
 
+         $$ = new ASTNoDecl(yylineno+1);
+         ((ASTNoDecl)$$).setType($1);
+         ((ASTNoDecl)$$).setVariables($2);
        
        }
       
          
-|      COUT OUT STRING  {
-        $$ = new ASTNoCoutWithoutExpr(yylineno+1);
-             ((ASTNoCoutWithoutExpr)$$).setString($3);
+|      COUT OUT lst_cout ';' {
+         $$ = new ASTNoCout(yylineno+1);
+         ((ASTNoCout)$$).setLstCout($3);
         }
-
-|      COUT OUT STRING OUT expr{
-        $$ = new ASTNoCoutExpr(yylineno+1);
-             ((ASTNoCoutExpr)$$).setString($3);
-             ((ASTNoCoutExpr)$$).setexpr($4);
-        }
+    
 
 |      CIN INP expr{
          $$ = new ASTNoCin(yylineno+1);
@@ -93,10 +91,7 @@ assign:
 ;
 
 
-decl: 
-    type var_decl var_rep:
 
-;
 
 type:
    INT {
@@ -108,34 +103,65 @@ type:
     }
 ;
 
-var_decl:
-    ID {
-    $$  = new ASTNoId(yylineno+1);
-    ((ASTNoId)$$).setName($1);		
+lst_variaveis:
+    
+    ID ',' lst_variaveis {
+
+    $$  = new ASTNoLstVariables(yylineno+1);
+    (ASTNoLstVariables)$$).setId($1);
+    (ASTNoLstVariables)$$).setLstVariables($3);
+
+    }
+
+|   ID '['NUM']' ',' lst_variaveis {
+    $$  = new ASTNoLstVariables(yylineno+1);
+    (ASTNoLstVariables)$$).setId($1);
+    (ASTNoLstVariables)$$).setVetTamValue($3);
+    (ASTNoLstVariables)$$).setLstVariables($6);
+    
+    }
+
+|   ID {
+    $$  = new ASTNoLstVariables(yylineno+1);
+    (ASTNoLstVariables)$$).setId($1);		
+   
     }
 
 |  ID '['NUM']'{
-       $$  = new ASTNoVet(yylineno+1);
-       ((ASTNoVet)$$).setID($1);	
-       ((ASTNoVet)$$).setVetTamValue($3);
+
+     $$  = new ASTNoLstVariables(yylineno+1);
+    (ASTNoLstVariables)$$).setId($1);
+    (ASTNoLstVariables)$$).setVetTamValue($3);
+    
     }
 
 ;
 
-var_rep:
-   ',' ID {
-     $$  = new ASTNoId(yylineno+1);
-    ((ASTNoId)$$).setName($1);	
-    }
-|  ',' ID '['NUM']'{
-        $$  = new ASTNoVet(yylineno+1);
-       ((ASTNoVet)$$).setID($1);	
-       ((ASTNoVet)$$).setVetTamValue($3);
-    }
-|  var_rep
-|
-;
+ lst_cout:
 
+    lst_cout OUT STRING {
+        $$  = new ASTNoLstCout(yylineno+1);
+        (ASTNoLstVariables)$$).setLstCout($1);
+        (ASTNoLstVariables)$$).setString($3);
+    }
+    lst_cout OUT expr {
+        $$  = new ASTNoLstCout(yylineno+1);
+        (ASTNoLstVariables)$$).setLstCout($1);
+        (ASTNoLstVariables)$$).setExpr($3);
+    
+    }
+    STRING {
+        $$  = new ASTNoLstCout(yylineno+1);
+        (ASTNoLstVariables)$$).setString($1);
+    
+    }
+    expr{
+         $$  = new ASTNoLstCout(yylineno+1);
+        (ASTNoLstVariables)$$).setExpr($1);
+    
+    }
+    
+;
 
 expr :
 	expr '<' expr {
