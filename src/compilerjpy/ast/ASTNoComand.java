@@ -5,6 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+import java.io.PrintWriter;
+
 /**
  *
  * @author marco
@@ -12,6 +15,8 @@ package compilerjpy.ast;
 public abstract class ASTNoComand extends ASTNo{
     private ASTNoComand next;
 
+    
+    
     public ASTNoComand getNext() {
         return next;
     }
@@ -25,5 +30,7 @@ public abstract class ASTNoComand extends ASTNo{
     public ASTNoComand(int line) {
         super(line);
     }
+    
+    //public abstract void generateCode(PrintWriter out, SymbolTab symbolTab) throws Exception;
     
 }

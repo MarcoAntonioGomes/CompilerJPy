@@ -15,9 +15,10 @@ public class Testes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      String palavra = "\"nome_\""; 
-      if (!palavra.isEmpty()) palavra = palavra.substring (1, palavra.length() - 1);
-        System.out.println(palavra);
+       float i;
+        i = new Float.parseFloat("1.5");
+        System.out.println((int)palavra.charAt(0));
+        
     }
     
 }

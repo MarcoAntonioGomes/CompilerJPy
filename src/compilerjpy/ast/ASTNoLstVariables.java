@@ -10,17 +10,39 @@ package compilerjpy.ast;
  * @author marco
  */
 public class ASTNoLstVariables extends ASTNo{
-    private ASTNoId id;
+    private ASTNoId idName;
     private int vetTamValue;
+    private ASTNoExpr expr;
+    private String vetIdName;
+
+    public ASTNoId getIdName() {
+        return idName;
+    }
+
+    public void setIdName(ASTNoId idName) {
+        this.idName = idName;
+    }
+
+    public String getVetIdName() {
+        return vetIdName;
+    }
+
+    public void setVetIdName(String vetIdName) {
+        this.vetIdName = vetIdName;
+    }
+    
+   
+
+    public void setExpr(ASTNoExpr expr) {
+        this.expr = expr;
+    }
+
+    public ASTNoExpr getExpr() {
+        return expr;
+    }
     private ASTNoLstVariables lstVariables;
 
-    public ASTNoId getId() {
-        return id;
-    }
-
-    public void setId(ASTNoId id) {
-        this.id = id;
-    }
+   
 
     public int getVetTamValue() {
         return vetTamValue;
@@ -41,6 +63,11 @@ public class ASTNoLstVariables extends ASTNo{
     
     public ASTNoLstVariables(int line) {
         super(line);
+    }
+
+    @Override
+    public void validateSemantic() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

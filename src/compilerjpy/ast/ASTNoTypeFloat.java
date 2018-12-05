@@ -14,5 +14,10 @@ public class ASTNoTypeFloat extends ASTNoType {
     public ASTNoTypeFloat(int line) {
         super(line);
     }
+
+    @Override
+    public void validateSemantic() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

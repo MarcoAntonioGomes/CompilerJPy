@@ -17,6 +17,8 @@ public abstract class  ASTNo {
         this.line = line;
     }
 
+     public abstract void  validateSemantic()throws Exception;
+     
      
     public int getLine() {
         return line;

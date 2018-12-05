@@ -1,0 +1,1 @@
+yacc -J -Jnorun -Jnoconstruct -Jthrows=IOException -Jpackage=C:\Users\marco\Documents\NetBeansProjects\CompilerJPy\src\compilerjpy -Jextends=Lexer -Jsemantic=Object parser.y

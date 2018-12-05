@@ -9,7 +9,7 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoDecl extends ASTNo{
+public class ASTNoDecl extends ASTNoComand{
     private ASTNoType type;
     private ASTNoLstVariables variables;
 
@@ -36,6 +36,11 @@ public class ASTNoDecl extends ASTNo{
     
     public ASTNoDecl(int line) {
         super(line);
+    }
+
+    @Override
+    public void validateSemantic() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

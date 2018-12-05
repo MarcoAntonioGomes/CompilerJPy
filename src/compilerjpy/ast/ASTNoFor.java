@@ -12,7 +12,7 @@ package compilerjpy.ast;
 public class ASTNoFor extends ASTNoComand{
     private ASTNoAtrib atrib;
     private ASTNoExpr  condition;
-    private ASTNoAtrib increment;
+    private ASTNoIncFor incPosDec;
     private ASTNoComand forComands;
 
     public ASTNoComand getForComands() {
@@ -41,16 +41,22 @@ public class ASTNoFor extends ASTNoComand{
         this.condition = condition;
     }
 
-    public ASTNoAtrib getIncrement() {
-        return increment;
+    public ASTNoIncFor getIncPosDec() {
+        return incPosDec;
     }
 
-    public void setIncrement(ASTNoAtrib increment) {
-        this.increment = increment;
+    public void setIncPosDec(ASTNoIncFor incPosDec) {
+        this.incPosDec = incPosDec;
     }
-    
+
+   
     public ASTNoFor(int line) {
         super(line);
+    }
+
+    @Override
+    public void validateSemantic() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

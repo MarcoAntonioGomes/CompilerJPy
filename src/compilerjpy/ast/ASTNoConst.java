@@ -9,15 +9,21 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoConst {
-    private double valor;
+public class ASTNoConst  extends ASTNoExpr{
+    private double value;
 
-    public double getValor() {
-        return valor;
+    public ASTNoConst(int line) {
+        super(line);
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public double getValue() {
+        return value;
     }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+  
     
 }

@@ -9,19 +9,12 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoAtrib extends ASTNo{
-    private ASTNo next;
+public class ASTNoAtrib extends ASTNoComand{
+   
     private String name;
-    private ASTNo expression;
+    private ASTNoExpr expression;
 
-    public ASTNo getNext() {
-        return next;
-    }
-
-    public void setNext(ASTNo next) {
-        this.next = next;
-    }
-
+  
     public String getName() {
         return name;
     }
@@ -34,12 +27,17 @@ public class ASTNoAtrib extends ASTNo{
         return expression;
     }
 
-    public void setExpression(ASTNo expression) {
+    public void setExpression(ASTNoExpr expression) {
         this.expression = expression;
     }
     
     public ASTNoAtrib(int line) {
         super(line);
+    }
+
+    @Override
+    public void validateSemantic() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

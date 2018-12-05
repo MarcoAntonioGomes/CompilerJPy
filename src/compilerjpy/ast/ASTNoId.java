@@ -9,11 +9,20 @@ package compilerjpy.ast;
  *
  * @author marco
  */
-public class ASTNoId extends ASTNo{
+public class ASTNoId extends ASTNoExpr{
+
+    public ASTNoId(String name, int line) {
+        super(line);
+        this.name = name;
+    }
     private String name;
 
     public String getName() {
         return name;
+    }
+
+    public ASTNoId(int line) {
+        super(line);
     }
 
     public void setName(String name) {
