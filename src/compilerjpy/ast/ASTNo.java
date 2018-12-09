@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -17,7 +19,7 @@ public abstract class  ASTNo {
         this.line = line;
     }
 
-     public abstract void  validateSemantic()throws Exception;
+     public abstract void  validateSemantic(SymbolTab symboltab, ASTNo raize)throws Exception;
      
      
     public int getLine() {

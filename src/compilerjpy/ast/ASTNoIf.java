@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -43,9 +45,19 @@ public class ASTNoIf extends ASTNoComand {
         super(line);
     }
 
+   
+
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+        getCondition().validateSemantic(symboltab,raize);
+        getIfComands().validateSemantic(symboltab,raize);
+        if(getElseComands() != null){
+            getElseComands().validateSemantic(symboltab,raize);
+        }
+        
+        if(getNext() != null){
+            getNext().validateSemantic(symboltab, raize);
+        }
     }
     
 }

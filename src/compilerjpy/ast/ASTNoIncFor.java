@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -33,9 +35,40 @@ public class ASTNoIncFor extends ASTNo{
         super(line);
     }
 
-    @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
+   
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+       symboltab.get(getIdName());
+       
+       ASTNo loop = raize;
+           
+                while(loop != null){
+                    
+                    if(loop instanceof ASTNoDecl){
+                       
+                        if(((ASTNoDecl) loop).getType() instanceof ASTNoTypeFloat){
+                             
+                            ASTNoLstVariables lst_variable = ((ASTNoDecl) loop).getVariables();
+                            while(lst_variable != null){
+                               
+                                if(lst_variable.getIdName().getName() == null ? getIdName() == null : lst_variable.getIdName().getName().equals(getIdName())){
+                                     
+                                    throw new Exception("This variable "+getIdName()+" is type float, this operation only works with integer ");
+                                    
+                                }
+                                
+                                lst_variable = lst_variable.getLstVariables();
+                             }
+
+                        }
+
+                    }
+                  
+                  loop = ((ASTNoComand)loop).getNext();
+
+                }
+            
+            
     }
     
 }

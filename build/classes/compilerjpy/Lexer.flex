@@ -47,6 +47,7 @@ numberfloat = ( {Float1} | {Float2} | {Float3} | {Float4} )
 "else" { return  Parser.ELSE; }
 "while" { return  Parser.WHILE; }
 "char" { return  Parser.CHAR;}
+"endl" { return  Parser.ENDL;}
 "!=" { return Parser.NEQ; }
 "==" { return Parser.EQU; }
 "<<" { return Parser.OUT;}

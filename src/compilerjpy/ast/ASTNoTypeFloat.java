@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -15,9 +17,10 @@ public class ASTNoTypeFloat extends ASTNoType {
         super(line);
     }
 
+  
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+       symboltab.get("float");
     }
     
 }

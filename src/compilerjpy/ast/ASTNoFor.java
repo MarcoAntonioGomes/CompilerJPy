@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -54,9 +56,27 @@ public class ASTNoFor extends ASTNoComand{
         super(line);
     }
 
+  
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+        getAtrib().validateSemantic(symboltab,raize);
+        getCondition().validateSemantic(symboltab,raize);
+         switch (getCondition().getOperator()){
+              case '+':
+              case '-':
+              case '/':
+              case '*':
+              case '%':    
+              throw new Exception("Error, operation is logic, operators used is unary");
+         }
+        
+        
+        getIncPosDec().validateSemantic(symboltab,raize);
+        getForComands().validateSemantic(symboltab,raize);
+        
+        if(getNext() != null){
+            getNext().validateSemantic(symboltab, raize);
+        }
     }
     
 }

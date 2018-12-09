@@ -9,7 +9,7 @@ import java.io.*;
 
 
 
-%token   ID INT  ERROR CIN COUT IF FOR FLOAT  ELSE WHILE CHAR NEQ EQU NOT OUT INP STRING NUM INC AND OR NUM_FLOAT
+%token   ID INT  ERROR CIN COUT IF FOR FLOAT  ELSE WHILE CHAR NEQ EQU NOT OUT INP STRING NUM INC AND OR NUM_FLOAT ENDL
 %nonassoc PRE_MAIS PRE_MENOS
 
 %left '<' '>'
@@ -20,7 +20,7 @@ import java.io.*;
 lst_comandos :
 	lst_comandos comando  {
                 ((ASTNoComand)$1).setNext((ASTNoComand)$2); $$ = $2;
-		$$ = $2;
+		
 	}
 |	comando  {
 		if(raiz == null) raiz = $1; 
@@ -53,10 +53,10 @@ comando :
         }
 |       ID '['ID']' INC ';'{
    
-            $$  = new ASTNoVetInc((Integer)getYYline()+1);
-            ((ASTNoVetInc)$$).setName((String)$1);
-            ((ASTNoVetInc)$$).setVetIdName((String)$3);
-         
+            $$  = new ASTNoVet((Integer)getYYline()+1);
+            ((ASTNoVet)$$).setName((String)$1);
+            ((ASTNoVet)$$).setVetIdName((String)$3);
+            ((ASTNoVet)$$).setOperatorInc("++");
         }         
 
 |      type lst_variaveis ';'{
@@ -72,7 +72,15 @@ comando :
          $$ = new ASTNoCout(getYYline()+1);
          ((ASTNoCout)$$).setLstCout((ASTNoLstCout)$2);
         }
-    
+
+|      COUT lst_cout ENDL';' {
+         $$ = new ASTNoCout(getYYline()+1);
+         ((ASTNoCout)$$).setLstCout((ASTNoLstCout)$2);
+        }
+|      COUT lst_cout OUT ENDL';' {
+         $$ = new ASTNoCout(getYYline()+1);
+         ((ASTNoCout)$$).setLstCout((ASTNoLstCout)$2);
+        }     
 
 |      CIN INP expr ';'{
          $$ = new ASTNoCin(getYYline()+1);
@@ -119,10 +127,12 @@ opr_inc_for:
 type:
    INT {
     $$ = new ASTNoTypeInt(getYYline()+1);
+    getSymbolTab().set("int");
     }
     
 |  FLOAT {
      $$ = new ASTNoTypeFloat(getYYline()+1);
+     getSymbolTab().set("float");
     }
 ;
 
@@ -132,6 +142,7 @@ lst_variaveis:
 
     $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$3,getYYline()+1));
+    getSymbolTab().set((String)$3);
     ((ASTNoLstVariables)$$).setLstVariables((ASTNoLstVariables)$1);
 
     }
@@ -140,18 +151,22 @@ lst_variaveis:
     $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$3,getYYline()+1));
     ((ASTNoLstVariables)$$).setVetTamValue((Integer)$5);
+    getSymbolTab().set((String)$3);
     ((ASTNoLstVariables)$$).setLstVariables((ASTNoLstVariables)$1);
-    
+    getSymbolTab().insertMemberSymbols(new memberSymbols((String)$3,(Integer)$5));
     }
 |  lst_variaveis ',' ID '['ID']'   {
     $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$3,getYYline()+1));
     ((ASTNoLstVariables)$$).setVetTamValue((Integer)$5);
     ((ASTNoLstVariables)$$).setLstVariables((ASTNoLstVariables)$1);
+     getSymbolTab().set((String)$3);
     ((ASTNoLstVariables)$$).setVetIdName((String)$5);
+    
     }
 |   ID {
     $$  = new ASTNoLstVariables(getYYline()+1);
+    getSymbolTab().set((String)$1);
    ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$1,getYYline()+1));		
    
     }
@@ -160,6 +175,7 @@ lst_variaveis:
 
      $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$1,getYYline()+1));
+    getSymbolTab().set((String)$1);
     ((ASTNoLstVariables)$$).setVetIdName((String)$3);
     }
 
@@ -167,14 +183,17 @@ lst_variaveis:
 
      $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$1,getYYline()+1));
-    ((ASTNoLstVariables)$$).setVetTamValue((Integer)$3);
-    
+    ((ASTNoLstVariables)$$).setVetTamValue((Integer)$3); 
+    getSymbolTab().set((String)$1);
+    getSymbolTab().insertMemberSymbols(new memberSymbols((String)$1,(Integer)$3));
+
     }
 
 |   ID '=' expr {
     $$  = new ASTNoLstVariables(getYYline()+1);
     ((ASTNoLstVariables)$$).setIdName(new ASTNoId((String)$1,getYYline()+1));	
-    ((ASTNoLstVariables)$$).setExpr((ASTNoExpr)$3);	
+    ((ASTNoLstVariables)$$).setExpr((ASTNoExpr)$3);
+    getSymbolTab().set((String)$1);	
     }
 ;
 
@@ -191,7 +210,8 @@ lst_cout:
         ((ASTNoLstCout)$$).setExpr((ASTNoExpr)$3);
     
     }
-|   OUT STRING {
+
+|   OUT STRING  {
         $$  = new ASTNoLstCout(getYYline()+1);
         ((ASTNoLstCout)$$).setString((String)$2);
     
@@ -202,7 +222,11 @@ lst_cout:
         ((ASTNoLstCout)$$).setExpr((ASTNoExpr)$2);
     
     }
+|   OUT STRING OUT{
+        $$  = new ASTNoLstCout(getYYline()+1);
+        ((ASTNoLstCout)$$).setString((String)$2);
     
+    }
 ;
 
 expr :
@@ -282,6 +306,10 @@ expr :
 	     ((ASTNoFloat)$$).setValue((Float)$1);
          
         }
+|       STRING{
+        $$  = new ASTNoString(getYYline()+1);
+        ((ASTNoString)$$).setValueString((String)$1);
+        }
 
 |	'(' expr ')' {
 		$$ = $2;
@@ -302,7 +330,7 @@ private  Object raiz;
 
 private SymbolTab symbolTab = new SymbolTab();
 
-public SymbolTab getSembolTab(){
+public SymbolTab getSymbolTab(){
     return symbolTab;
 }
 

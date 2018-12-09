@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 
 
 /**
@@ -35,9 +37,16 @@ public class ASTNoPrintExpr extends ASTNo {
         super(line);
     }
 
+  
+
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+        if(getNext() != null){
+            getNext().validateSemantic(symboltab,raize);
+        }
+        if(getExpression() != null){
+            getExpression().validateSemantic(symboltab,raize);
+        }
     }
     
     

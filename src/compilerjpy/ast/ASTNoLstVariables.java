@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -14,6 +16,7 @@ public class ASTNoLstVariables extends ASTNo{
     private int vetTamValue;
     private ASTNoExpr expr;
     private String vetIdName;
+    private ASTNoLstVariables lstVariables;
 
     public ASTNoId getIdName() {
         return idName;
@@ -40,7 +43,7 @@ public class ASTNoLstVariables extends ASTNo{
     public ASTNoExpr getExpr() {
         return expr;
     }
-    private ASTNoLstVariables lstVariables;
+    
 
    
 
@@ -65,9 +68,21 @@ public class ASTNoLstVariables extends ASTNo{
         super(line);
     }
 
+   
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+        if(getVetIdName() != null){
+            symboltab.get(getVetIdName());
+            
+        }
+        getIdName().validateSemantic(symboltab,raize);
+      
+        if(getExpr() != null){
+            getExpr().validateSemantic(symboltab,raize);
+            
+        }
+        
+        
     }
     
 }

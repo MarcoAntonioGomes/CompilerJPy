@@ -16,7 +16,6 @@ public abstract class ASTNoComand extends ASTNo{
     private ASTNoComand next;
 
     
-    
     public ASTNoComand getNext() {
         return next;
     }
@@ -31,6 +30,12 @@ public abstract class ASTNoComand extends ASTNo{
         super(line);
     }
     
-    //public abstract void generateCode(PrintWriter out, SymbolTab symbolTab) throws Exception;
+    @Override
+    public void  validateSemantic(SymbolTab symboltab, ASTNo raize) throws Exception{
+     
+        getNext().validateSemantic(symboltab, raize);
+    }
+
+   
     
 }

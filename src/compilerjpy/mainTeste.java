@@ -17,8 +17,9 @@ public class mainTeste {
      */
     public static void main(String[] args) throws Exception {
         Parser p = new Parser("teste.txt");
-        //PrintWriter out = new PrintWriter(new File("Teste"))
 	p.yyparse();
+        p.getRaiz().validateSemantic(p.getSymbolTab(),p.getRaiz());
+        System.out.println(p.getRaiz().getNext().getNext());
     }
     
 }

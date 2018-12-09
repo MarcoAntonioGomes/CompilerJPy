@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 
 /**
  *
@@ -13,6 +15,8 @@ package compilerjpy.ast;
 public class ASTNoExpr extends ASTNoComand {
         private char operator;
         private String operatorLogicLogic;
+        private ASTNo left;
+	private ASTNo right;
 
     public String getOperatorLogicLogic() {
         return operatorLogicLogic;
@@ -21,8 +25,7 @@ public class ASTNoExpr extends ASTNoComand {
     public void setOperatorLogicLogic(String operatorLogicLogic) {
         this.operatorLogicLogic = operatorLogicLogic;
     }
-	private ASTNo left;
-	private ASTNo right;
+	
 
     public char getOperator() {
         return operator;
@@ -53,9 +56,18 @@ public class ASTNoExpr extends ASTNoComand {
     }
 
     @Override
-    public void validateSemantic() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+      
+        if((getLeft()!= null)&& (getRight() != null)){
+           getLeft().validateSemantic(symboltab,raize);
+           getRight().validateSemantic(symboltab,raize);
+        }
+        
+       
+        
     }
+
+   
         
   
     

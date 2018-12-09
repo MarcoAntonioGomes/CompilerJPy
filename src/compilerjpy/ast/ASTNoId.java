@@ -5,6 +5,8 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.SymbolTab;
+
 /**
  *
  * @author marco
@@ -29,8 +31,11 @@ public class ASTNoId extends ASTNoExpr{
         this.name = name;
     }
     
-    public ASTNoId(int line, int column) {
-        super(line, column);
+   public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
+        symboltab.get(getName());
+       
     }
+    
+    
     
 }

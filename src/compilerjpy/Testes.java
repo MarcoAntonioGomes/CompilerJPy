@@ -15,9 +15,8 @@ public class Testes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       float i;
-        i = new Float.parseFloat("1.5");
-        System.out.println((int)palavra.charAt(0));
+        float i = 1;
+        System.out.println(teste);
         
     }
     
