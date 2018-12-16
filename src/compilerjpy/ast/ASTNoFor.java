@@ -61,19 +61,43 @@ public class ASTNoFor extends ASTNoComand{
     public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
         getAtrib().validateSemantic(symboltab,raize);
         getCondition().validateSemantic(symboltab,raize);
-         switch (getCondition().getOperator()){
-              case '+':
-              case '-':
-              case '/':
-              case '*':
-              case '%':    
-              throw new Exception("Error, operation is logic, operators used is unary");
-         }
+         if((!((getCondition().getLeft() instanceof ASTNoConst)) && (!((getCondition().getRight() instanceof ASTNoConst))))&&(!((getCondition().getLeft() instanceof ASTNoFloat)) && (!((getCondition().getRight() instanceof ASTNoFloat))))){
+            if((getCondition().getLeft() instanceof ASTNoExpr) &&(getCondition().getRight() instanceof ASTNoExpr)){
+
+                if((((ASTNoExpr)getCondition().getLeft()).getTipoOp() == 1) && (((ASTNoExpr)getCondition().getRight()).getTipoOp() == 1)){
+                    switch (((ASTNoExpr)getCondition().getLeft()).getOperator()){
+                        case '+':
+                        case '-':
+                        case '/':
+                        case '*':
+                        case '%':
+                        throw new Exception("Error! The expression generated a numerical value, it was expected a logical value!!");
+                    }
+                    if(getCondition().getOperatorLogicLogic() != null){
+                        getCondition().setTipoOp(1);
+                    }
+                    if(getCondition().getOperator() == '<' ||getCondition().getOperator() == '>'){
+                         getCondition().setTipoOp(1);
+
+                    }
+                }
+                if((((ASTNoExpr)getCondition().getLeft()).getTipoOp() == 0) && (((ASTNoExpr)getCondition().getRight()).getTipoOp() == 0)){
+                    getCondition().setTipoOp(1);
+
+                }   
+            }
+        }
+        if(getCondition().getTipoOp() == 0){
+            throw new Exception("Error! The expression generated a numerical value, it was expected a logical value!!");
+        }
+        
         
         
         getIncPosDec().validateSemantic(symboltab,raize);
         getForComands().validateSemantic(symboltab,raize);
-        
+       // System.out.println( getForComands());
+         //System.out.println( getForComands());
+         //System.out.println(getForComands().getNext().getPrevious());
         if(getNext() != null){
             getNext().validateSemantic(symboltab, raize);
         }

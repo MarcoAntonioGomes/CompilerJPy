@@ -1,28 +1,38 @@
-/* PROBLEMA DO TROCO */
+int n=20, i, j, tmp;
+int v[n];
 
-float troco,c[6];
-int v[6],n,i;
+for(i=0;i<n;i++) {
+	cout << "Informe o " << i+1 << "o elemento: ";
+	cin >> v[i];
+}
 
-/* VALORES */
-v[0] = 1;
-v[1] = 5;
-v[2] = 25;
-v[3] = 1;
-v[4] = 5;
-v[5] = 01;
+cout << "Vetor antes: ";
 
-cout << "Informe o valor: ";
-cin >> troco;
+for(i=0;i<n;i++) {
+	if(i > 0 && i < n-1) {
+		cout << ",";
+	}
+	
+	cout << v[i];
+}
 
-for(i=0;i < n;i++) {
-	while(troco > v[i]) {
-		c[i]++;
-		troco = troco - v[i];
+/* ORDENAÇÃO */
+for(i=0;i<n;i++) {
+	for(j=i+1;j<n;j++) {
+		if(v[j] > v[i]) {
+			tmp = v[j];
+			v[j] = v[i];
+			v[i] = tmp;
+		}
 	}
 }
 
-cout << "O total de moedas usado foi " << endl;
+cout << "Vetor depois: ";
 
-for(i=1;i<n;i++) {
-	cout << v[i] << " = " << c[i] << endl;
+for(i=0;i<n;i++) {
+	if(i > 0 && i < n-1) {
+		cout << ",";
+	}
+	
+	cout << v[i];
 }

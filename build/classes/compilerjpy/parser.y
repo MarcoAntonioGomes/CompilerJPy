@@ -12,21 +12,26 @@ import java.io.*;
 %token   ID INT  ERROR CIN COUT IF FOR FLOAT  ELSE WHILE CHAR NEQ EQU NOT OUT INP STRING NUM INC AND OR NUM_FLOAT ENDL
 %nonassoc PRE_MAIS PRE_MENOS
 
-%left '<' '>'
+%left '<' '>' NEQ EQU AND OR
 %left '*' '/' '%'
-%left '+' '-'
+%left '+' '-' INC
 
 %%
 lst_comandos :
 	lst_comandos comando  {
-                ((ASTNoComand)$1).setNext((ASTNoComand)$2); $$ = $2;
-		
+                 
+                ((ASTNoComand)$1).setNext((ASTNoComand)$2); 
+		((ASTNoComand)$2).setPrevious((ASTNoComand)$1);
+                $$ = $2;
 	}
 |	comando  {
+                
 		if(raiz == null) raiz = $1; 
+                noAux = $1;
                 $$ = $1; 
 }
 ;
+
 comando :
 	
 	ID '=' expr ';'{
@@ -86,20 +91,23 @@ comando :
          $$ = new ASTNoCin(getYYline()+1);
             ((ASTNoCin)$$).setExpr((ASTNoExpr)$3);
        }
-|      IF '(' expr ')' '{' lst_comandos '}' { $$ = new ASTNoIf((ASTNoExpr)$3,(ASTNoComand)$6,getYYline()+1); }
-|      IF '(' expr ')' '{' lst_comandos '}' ELSE '{' lst_comandos '}'{ $$ = new ASTNoIf((ASTNoExpr)$3,(ASTNoComand)$6,(ASTNoComand)$10,getYYline()+1); }
+|      IF '(' expr ')' '{' lst_comandos '}' { $$ = new ASTNoIf((ASTNoExpr)$3,(ASTNoComand)$6,getYYline()+1);}
+|      IF '(' expr ')' '{' lst_comandos '}' ELSE '{' lst_comandos '}'{ $$ = new ASTNoIf((ASTNoExpr)$3,(ASTNoComand)$6,(ASTNoComand)$10,getYYline()+1);}
 |      WHILE '(' expr ')' '{' lst_comandos '}' { $$ = new ASTNoWhile(getYYline()+1); 
                 ((ASTNoWhile)$$).setCondition((ASTNoExpr)$3);
                 ((ASTNoWhile)$$).setWhileComands((ASTNoComand)$6);
-               
+                 
               }
 |      FOR '(' assign ';' expr ';' opr_inc_for ')''{' lst_comandos '}'{
-            $$ = new ASTNoFor(getYYline()+1);
+     
+                $$ = new ASTNoFor(getYYline()+1);
                 ((ASTNoFor)$$).setAtrib((ASTNoAtrib)$3);
                 ((ASTNoFor)$$).setCondition((ASTNoExpr)$5);
                 ((ASTNoFor)$$).setIncPosDec((ASTNoIncFor)$7);
-                ((ASTNoFor)$$).setForComands((ASTNoComand)$10);
-        }
+                ((ASTNoFor)$$).setForComands((ASTNoComand)getNoAux());
+                
+                
+}
 
 
 ;
@@ -222,11 +230,7 @@ lst_cout:
         ((ASTNoLstCout)$$).setExpr((ASTNoExpr)$2);
     
     }
-|   OUT STRING OUT{
-        $$  = new ASTNoLstCout(getYYline()+1);
-        ((ASTNoLstCout)$$).setString((String)$2);
-    
-    }
+
 ;
 
 expr :
@@ -327,8 +331,17 @@ expr :
 
 %%
 private  Object raiz;
+private  Object noAux;
+
+
+public Object getNoAux(){
+
+    return noAux;
+}   
+
 
 private SymbolTab symbolTab = new SymbolTab();
+
 
 public SymbolTab getSymbolTab(){
     return symbolTab;

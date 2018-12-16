@@ -19,7 +19,7 @@ public class mainTeste {
         Parser p = new Parser("teste.txt");
 	p.yyparse();
         p.getRaiz().validateSemantic(p.getSymbolTab(),p.getRaiz());
-        System.out.println(p.getRaiz().getNext().getNext());
+      
     }
     
 }

@@ -21,7 +21,6 @@ public abstract class  ASTNo {
 
      public abstract void  validateSemantic(SymbolTab symboltab, ASTNo raize)throws Exception;
      
-     
     public int getLine() {
         return line;
     }

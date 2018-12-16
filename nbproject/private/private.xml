@@ -5,7 +5,6 @@
         <group>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Lexer.flex</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoLstCout.java</file>
-            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/tabSimbols.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoDecl.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Parser.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/CompilerJPy.java</file>
@@ -14,22 +13,25 @@
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/parser.y</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoAtrib.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoLstVariables.java</file>
-            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Testes.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoExpr.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNo.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ComandoParaExecução.txt</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/SymbolTab.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoIf.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoTypeInt.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoVet.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoComand.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoCout.java</file>
-            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Token.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Lexer.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoFloat.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/No_Numbers.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/memberSymbols.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoWhile.java</file>
-            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Scanner.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Makefile</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoConst.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoId.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoFor.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoTypeFloat.java</file>
         </group>
     </open-files>
 </project-private>

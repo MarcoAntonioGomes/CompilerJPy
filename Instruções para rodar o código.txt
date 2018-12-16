@@ -1,0 +1,21 @@
+Compilador JPy- Análise Léxica - Sintática - Semântica
+Grupo: Anderson - Guilherme - Marco Antônio
+-----------------------------------------------------------------------------------------------------------------
+Observações: As regras léxicas, sintáticas e semânticas foram criadas baseadas nós códigos 
+disponibilizados para o trabalho, simple_cpp: soma.scc - sort.scc - troco.scc, logo os codigos só validam as expressões encontradas nos arquivos.   
+
+- As regras Lexicas estão no arquivo lexer.flex
+- As regras Sintáticas estão no arquivo parser.y
+------------------------------------------------------------------------------------------------------------------
+Execução:
+
+- O arquivo CompilerJPy.java contém uma main para gerar o Lexer.java, 
+  logo executar o ComplilerJPy irá gera-lo.
+
+- O arquivo Makefile gera o Parser.java
+
+- O arquivo mainTeste.java executa o parser.java fazendo o parser dos codigos 
+  encontrados no arquivo teste.txt, Após o parser e feito a analise semântica do código.
+
+
+ 

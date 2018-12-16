@@ -14,7 +14,15 @@ import java.io.PrintWriter;
  */
 public abstract class ASTNoComand extends ASTNo{
     private ASTNoComand next;
+    private ASTNoComand previous;
 
+    public ASTNoComand getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(ASTNoComand previous) {
+        this.previous = previous;
+    }
     
     public ASTNoComand getNext() {
         return next;
@@ -36,6 +44,6 @@ public abstract class ASTNoComand extends ASTNo{
         getNext().validateSemantic(symboltab, raize);
     }
 
-   
+    
     
 }
