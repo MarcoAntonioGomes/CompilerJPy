@@ -5,6 +5,10 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
+import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
+
 /**
  *
  * @author marco
@@ -22,6 +26,11 @@ public class ASTNoConst  extends ASTNoExpr{
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
   

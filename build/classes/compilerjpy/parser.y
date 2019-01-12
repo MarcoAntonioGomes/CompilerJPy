@@ -332,7 +332,16 @@ expr :
 %%
 private  Object raiz;
 private  Object noAux;
+private boolean classMainCreate = false;
 
+public void setClassMainCreate(boolean value){
+    classMainCreate = value;
+}
+
+public boolean getClassMainCreate(){
+
+    return classMainCreate;
+}
 
 public Object getNoAux(){
 

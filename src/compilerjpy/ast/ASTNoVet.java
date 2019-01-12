@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -143,5 +145,10 @@ public class ASTNoVet extends ASTNoExpr {
         if(getNext() != null){
             getNext().validateSemantic(symboltab, raize);
         }
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -3,6 +3,7 @@ Grupo: Anderson - Guilherme - Marco Antônio
 -----------------------------------------------------------------------------------------------------------------
 Observações: As regras léxicas, sintáticas e semânticas foram criadas baseadas nós códigos 
 disponibilizados para o trabalho, simple_cpp: soma.scc - sort.scc - troco.scc, logo os codigos só validam as expressões encontradas nos arquivos.   
+Foi construída uma pequena geração de codigo para o arquivo soma.scc. 
 
 - As regras Lexicas estão no arquivo lexer.flex
 - As regras Sintáticas estão no arquivo parser.y
@@ -17,5 +18,6 @@ Execução:
 - O arquivo mainTeste.java executa o parser.java fazendo o parser dos codigos 
   encontrados no arquivo teste.txt, Após o parser e feito a analise semântica do código.
 
-
+- No arquivo mainTeste.java ao desmarcar os comentários na linha 27 e 28, se o programa soma.scc estiver no arquivo teste.txt, sera gerado o code.j  para executar no 
+jasmim, o codigo gerado possui erros e não foi testado no jasmin, só foi gerado. 
  

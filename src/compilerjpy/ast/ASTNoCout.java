@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -33,6 +35,25 @@ public class ASTNoCout extends ASTNoComand{
         getLstCout().validateSemantic(symboltab,raize);
         if(getNext() != null){
             getNext().validateSemantic(symboltab, raize);
+        }
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        ASTNo loop = getLstCout();
+        String line;
+        while (loop != null){
+          loop.generateCode(symboltab, raize, archCode, p);
+          loop = ((ASTNoLstCout)loop).getLstCout();
+        }
+        if(getNext() == null){
+            line = "return\n";
+            archCode.append(line);
+            line = ".end method\n";
+            archCode.append(line);
+        }
+        else{
+            getNext().generateCode(symboltab, raize, archCode, p);
         }
     }
     

@@ -5,14 +5,16 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 
 /**
  *
  * @author marco
  */
-public class ASTNoExpr extends ASTNoComand {
+public  class ASTNoExpr extends ASTNoComand {
         private char operator;
         private String operatorLogicLogic;
         private ASTNo left;
@@ -345,6 +347,11 @@ public class ASTNoExpr extends ASTNoComand {
        
         
     }
+
+    
+    
+     @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception{}
 
    
         

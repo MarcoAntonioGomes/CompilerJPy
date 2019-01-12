@@ -448,7 +448,16 @@ final static String yyrule[] = {
 //#line 333 "parser.y"
 private  Object raiz;
 private  Object noAux;
+private boolean classMainCreate = false;
 
+public void setClassMainCreate(boolean value){
+    classMainCreate = value;
+}
+
+public boolean getClassMainCreate(){
+
+    return classMainCreate;
+}
 
 public Object getNoAux(){
 
@@ -477,7 +486,7 @@ public void yyerror(String s) {
 	System.out.println("Erro sintático: "+s);
 
 }
-//#line 416 "Parser.java"
+//#line 425 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -1034,7 +1043,7 @@ case 47:
 		
 	}
 break;
-//#line 967 "Parser.java"
+//#line 976 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

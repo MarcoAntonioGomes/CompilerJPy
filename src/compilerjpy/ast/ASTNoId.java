@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -31,9 +33,15 @@ public class ASTNoId extends ASTNoExpr{
         this.name = name;
     }
     
+    @Override
    public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
         symboltab.get(getName());
        
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+       archCode.append(getName());
     }
     
     

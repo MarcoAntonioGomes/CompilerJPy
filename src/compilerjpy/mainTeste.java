@@ -5,6 +5,9 @@
  */
 package compilerjpy;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 /**
  *
  * @author marco
@@ -17,9 +20,13 @@ public class mainTeste {
      */
     public static void main(String[] args) throws Exception {
         Parser p = new Parser("teste.txt");
-	p.yyparse();
+	
+        p.yyparse();
         p.getRaiz().validateSemantic(p.getSymbolTab(),p.getRaiz());
-      
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("code.j",true));
+        //p.getRaiz().generateCode(p.getSymbolTab(), p.getRaiz(), buffWrite, p); //Só Funciona para o soma.scc
+        //buffWrite.close();
+        //System.out.println(p.getRaiz());
     }
     
 }

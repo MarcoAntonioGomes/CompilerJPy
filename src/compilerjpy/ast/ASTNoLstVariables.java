@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -83,6 +85,18 @@ public class ASTNoLstVariables extends ASTNo{
         }
         
         
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        if(getVetIdName() == null && getVetTamValue() == 0){
+       
+          archCode.append(getIdName().getName());
+        
+        }
+        if(getExpr() != null){
+            getExpr().generateCode(symboltab, raize, archCode, p);
+        }
     }
     
 }

@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -36,6 +38,33 @@ public class ASTNoCin extends ASTNoComand {
         getExpr().validateSemantic(symboltab,raize);
         if(getNext() != null){
             getNext().validateSemantic(symboltab, raize);
+        }
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+       String line = "new java/util/Scanner\n";
+       archCode.append(line);
+       line = "dup\n";
+       archCode.append(line);
+       line = "getstatic java/lang/System/in Ljava/io/InputStream;\n";
+       archCode.append(line);
+       line = "invokespecial java/util/Scanner/<init>(Ljava/io/InputStream;)V\n";
+       archCode.append(line);
+       line = " astore ";
+       archCode.append(line);
+       getExpr().generateCode(symboltab, raize, archCode, p);
+       line = "\n";
+       archCode.append(line);
+       
+       if(getNext() == null){
+            line = "return\n";
+            archCode.append(line);
+            line = ".end method\n";
+            archCode.append(line);
+        }
+        else{
+            getNext().generateCode(symboltab, raize, archCode, p);
         }
     }
     

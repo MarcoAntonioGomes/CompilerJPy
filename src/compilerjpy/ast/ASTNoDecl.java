@@ -5,8 +5,11 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
+        
 /**
  *
  * @author marco
@@ -48,6 +51,55 @@ public class ASTNoDecl extends ASTNoComand{
             getNext().validateSemantic(symboltab, raize);
         }
        
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        String line;
+       
+        if(!(p.getClassMainCreate())){
+            line = ".class public code\n";
+            archCode.append(line);
+            line = ".super java/lang/Object\n";
+            archCode.append(line);
+            line = ".method public <init>()V\n";
+            archCode.append(line);
+            line = " aload_0\n";
+            archCode.append(line);
+            line = " invokenonvirtual java/lang/Object/<init>()V\n";
+            archCode.append(line);
+            line = " return\n";
+            archCode.append(line);
+            line = ".end method\n\n";
+            archCode.append(line);
+            line = ".method public static main([Ljava/lang/String;)V\n";
+            archCode.append(line);
+            line = " .limit stack 2\n";
+            archCode.append(line);
+            
+            p.setClassMainCreate(true);
+        }
+        
+        ASTNo loop = getVariables();
+        
+        while (loop != null){
+        
+        line = " .field";
+        archCode.append(line);
+        getVariables().generateCode(symboltab, raize, archCode, p);
+        getType().generateCode(symboltab, raize, archCode, p);
+        loop = ((ASTNoLstVariables)loop).getLstVariables();
+        }
+        if(getNext() == null){
+            line = "return\n";
+            archCode.append(line);
+            line = ".end method\n";
+            archCode.append(line);
+        }
+        else{
+            getNext().generateCode(symboltab, raize, archCode, p);
+        }
+                
     }
     
 }

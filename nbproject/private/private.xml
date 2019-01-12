@@ -7,6 +7,7 @@
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoLstCout.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoDecl.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Parser.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoIncFor.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/CompilerJPy.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/mainTeste.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoPrintExpr.java</file>
@@ -22,6 +23,7 @@
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoVet.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoComand.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoCout.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoString.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/Lexer.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoFloat.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/No_Numbers.java</file>
@@ -31,7 +33,9 @@
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoConst.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoId.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoFor.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoType.java</file>
             <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoTypeFloat.java</file>
+            <file>file:/C:/Users/marco/Documents/NetBeansProjects/CompilerJPy/src/compilerjpy/ast/ASTNoCin.java</file>
         </group>
     </open-files>
 </project-private>

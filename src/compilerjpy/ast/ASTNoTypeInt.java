@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -21,7 +23,12 @@ public class ASTNoTypeInt extends ASTNoType{
     public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
        symboltab.get("int");
     }
-
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        String line;
+        line = "I.\n";
+        archCode.append(line);
+    }
     
     
 }

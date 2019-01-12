@@ -5,7 +5,9 @@
  */
 package compilerjpy.ast;
 
+import compilerjpy.Parser;
 import compilerjpy.SymbolTab;
+import java.io.BufferedWriter;
 
 /**
  *
@@ -21,6 +23,13 @@ public class ASTNoTypeFloat extends ASTNoType {
     @Override
     public void validateSemantic(SymbolTab symboltab,ASTNo raize) throws Exception {
        symboltab.get("float");
+    }
+
+    @Override
+    public void generateCode(SymbolTab symboltab, ASTNo raize, BufferedWriter archCode, Parser p) throws Exception {
+        String line;
+        line = "F.\n";
+        archCode.append(line);
     }
     
 }
